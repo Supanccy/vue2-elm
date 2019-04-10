@@ -1,8 +1,19 @@
 <template>
     <div class="loginContainer">
+
+        <!--登录页面的头部-->
+        <!--组件有的属性需要在前面加冒号，有的不同。具体使用方式如下：
+        1，当子组件的属性需要动态绑定当前组件中的数据的时候，就需要添加冒号
+        2，当子组件的属性不需要动态绑定当前组件中的数据的时候，就不需要冒号
+        这里head-title是需要根据数据中loginWay来动态判断，就需要添加冒号
+        而goBack是直接传递值，不用动态绑定数据，就不需要添加冒号
+        -->
         <head-top :head-title="loginWay? '登录':'密码登录'" goBack="true">
             <!-- <div slot="changeLogin" class="change_login" @click="changeLoginWay">{{loginWay? "密码登录":"短信登录"}}</div> -->
         </head-top>
+
+
+        <!--短信登录模式的form表单-->
         <form class="loginForm" v-if="loginWay">
             <section class="input_container phone_number">
                 <input type="text" placeholder="账号密码随便输入" name="phone" maxlength="11" v-model="phoneNumber">
@@ -13,12 +24,26 @@
                 <input type="text" placeholder="验证码" name="mobileCode" maxlength="6" v-model="mobileCode">
             </section>
         </form>
+
+        <!--账号密码登录模式的form表单-->
         <form class="loginForm" v-else>
+
+            <!--账号输入框-->
             <section class="input_container">
+                <!--
+                注意：v-model的lazy修饰符的用法：
+                v-model是用来进行双向数据绑定，在input的基本keyup的时候就要修改model中的数据
+                为了节省性能，添加lazy修饰符用来在input失去焦点也就是出发了onchange方法的时候
+                进行给model赋值。
+                -->
                 <input type="text" placeholder="账号" v-model.lazy="userAccount">
             </section>
+
+            <!--密码输入框-->
             <section class="input_container">
+                <!--不显示密码时用密码输入框（看不到密码，只能看到点点点-->
                 <input v-if="!showPassword" type="password" placeholder="密码"  v-model="passWord">
+                <!--显示密码时用字符串输入框（可以看到密码-->
                 <input v-else type="text" placeholder="密码"  v-model="passWord">
                 <div class="button_switch" :class="{change_to_text: showPassword}">
                     <div class="circle_button" :class="{trans_to_right: showPassword}" @click="changePassWordType"></div>
@@ -26,6 +51,8 @@
                     <span>...</span>
                 </div>
             </section>
+
+            <!--验证码输入框-->
             <section class="input_container captcha_code_container">
                 <input type="text" placeholder="验证码" maxlength="4" v-model="codeNumber">
                 <div class="img_change_img">
@@ -36,6 +63,7 @@
                     </div>
                 </div>
             </section>
+
         </form>
         <p class="login_tips">
             温馨提示：未注册过的账号，登录时将自动注册
@@ -212,6 +240,21 @@
             input{
                 @include sc(.7rem, #666);
             }
+            /**修改h5中input的placeholder字体的颜色值*/
+            input::-webkit-input-placeholder{
+              color:#ccc;
+            }
+            input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+              color:#ccc;
+            }
+            input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+              color:#ccc;
+            }
+            input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+              color:#ccc;
+            }
+            /**修改h5中input的placeholder字体的颜色值*/
+
             button{
                 @include sc(.65rem, #fff);
                 font-family: Helvetica Neue,Tahoma,Arial;
@@ -284,10 +327,11 @@
             top: -0.2rem;
             z-index: 1;
             left: -0.3rem;
-            @include wh(1.2rem, 1.2rem);
+            @include wh(1rem, 1rem);
             box-shadow: 0 0.026667rem 0.053333rem 0 rgba(0,0,0,.1);
             background-color: #f1f1f1;
             border-radius: 50%;
+            cursor:pointer;
         }
         .trans_to_right{
             transform: translateX(1.3rem);

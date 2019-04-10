@@ -2,6 +2,7 @@
   	<div>
 
         <!--页面头部（使用vue的插槽模式）-->
+        <!--引入组件的时候用驼峰写法，使用的时候最好用连接符写法-->
         <head-top signin-up='home'>
             <span slot='logo' class="head_logo"  @click="reload">民以食为天</span>
         </head-top>

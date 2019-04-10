@@ -5,6 +5,7 @@
 
         <slot name='search'></slot>
 
+        <!--如果使用head标签的传入goBack标识为true，则显示后退图标-->
         <section class="head_goback" v-if="goBack" @click="$router.go(-1)">
             <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <polyline points="12,18 4,9 12,0" style="fill:none;stroke:rgb(255,255,255);stroke-width:2"/>
@@ -48,6 +49,10 @@
             this.getUserInfo();
 
         },
+
+        //head组件接受父组件传递的三个参数：
+        // goBack：表示head标签是否显示后退图标
+        //headTitle：标题的显示内容
         props: ['signinUp', 'headTitle', 'goBack'],
         computed: {
             ...mapState([
