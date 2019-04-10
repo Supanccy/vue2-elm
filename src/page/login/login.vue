@@ -73,7 +73,13 @@
         </p>
         <div class="login_container" @click="mobileLogin">登录</div>
         <router-link to="/forget" class="to_forget" v-if="!loginWay">重置密码？</router-link>
-        <alert-tip v-if="showAlert" :showHide="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
+
+        <!--提示框组件
+        提示组件的渲染与否取决于父组件中的showAlert属性的值，该值为真则显示，该值为假则不显示
+        如此则可在父组件中根据业务需求，给showAlert赋值，就可以控制提示组件的显示了。
+        -->
+        <alert-tip v-if="showAlert" @closeTip="closeTip" :alertText="alertText"></alert-tip>
+
     </div>
 </template>
 
@@ -240,21 +246,6 @@
             input{
                 @include sc(.7rem, #666);
             }
-            /**修改h5中input的placeholder字体的颜色值*/
-            input::-webkit-input-placeholder{
-              color:#ccc;
-            }
-            input::-moz-placeholder{   /* Mozilla Firefox 19+ */
-              color:#ccc;
-            }
-            input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
-              color:#ccc;
-            }
-            input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
-              color:#ccc;
-            }
-            /**修改h5中input的placeholder字体的颜色值*/
-
             button{
                 @include sc(.65rem, #fff);
                 font-family: Helvetica Neue,Tahoma,Arial;

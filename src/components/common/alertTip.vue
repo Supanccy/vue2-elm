@@ -20,7 +20,7 @@
             }
         },
         mounted(){
-      
+
         },
         props: ['alertText'],
         methods: {
@@ -33,7 +33,7 @@
 
 <style lang="scss" scoped>
     @import '../../style/mixin';
-	@keyframes tipMove{
+	  @keyframes tipMove{
        0%   { transform: scale(1) }
        35%  { transform: scale(.8) }
        70%  { transform: scale(1.1) }
@@ -42,10 +42,10 @@
     .alet_container{
     	position: fixed;
     	top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 200;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 200;
     }
     .tip_text_container{
         position: absolute;
@@ -104,5 +104,5 @@
             border-bottom-right-radius: 0.25rem;
         }
     }
-    
+
 </style>
