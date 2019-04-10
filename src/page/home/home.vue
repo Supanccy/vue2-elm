@@ -3,7 +3,7 @@
 
         <!--页面头部（使用vue的插槽模式）-->
         <head-top signin-up='home'>
-            <span slot='logo' class="head_logo"  @click="reload">饿了吗</span>
+            <span slot='logo' class="head_logo"  @click="reload">民以食为天</span>
         </head-top>
 
         <!--定位当前所在城市-->
@@ -48,6 +48,8 @@
 </template>
 
 <script>
+
+//注意引入组件的时候，组件名称用驼峰写法，在使用的时候用连接符（连接符两边均小写）
 import headTop from '../../components/header/head'
 import {cityGuess, hotcity, groupcity} from '../../service/getData'
 
@@ -112,7 +114,7 @@ export default {
         left: 0.4rem;
         font-weight: 400;
         @include sc(0.7rem, #fff);
-        @include wh(2.3rem, 0.7rem);
+        @include wh(3.5rem, 0.7rem);
         @include ct;
     }
     .city_nav{
